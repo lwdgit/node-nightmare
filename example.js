@@ -1,13 +1,11 @@
 var Nightmare = require('.');
-var nightmare = Nightmare({ show: true })
+var nightmare = Nightmare({ show: false })
 
 nightmare
-  .on('page', function (type, ...args) {
-        
-            console.log(args);
-        
+  .on('page', function (type, ...args) { 
+      console.log(args);
   })
-  .goto('https://m.alibaba.com/wholesale/products/audi%20a4%20diesel.html')
+  .goto('https://google.com').show().wait(1000).hide().wait(1000).end()
   .then(function (result) {
     //console.log(result)
   })
