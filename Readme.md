@@ -21,8 +21,12 @@ Nightmare({show: false})
   .hide()
   .evaluate(function() {
       return $('a:contains("node-nightmare")').text();
+      // default require saved in __NODE namespace, but you can use it directly in `evaluate` scope
   })
   .then(function(ret) {
      console.log(ret)
   })
-  ```
+```
+
+> default require saved in __NODE namespace, but you can use it directly in `evaluate` scope
+
