@@ -8,13 +8,21 @@
   
 ## example
 
-  ```
-    const Nightmare = require('node-nightmare')
-    Nightmare({show: false})
-    .goto('https://google.com')
-    .show()
-    .evaluate(function() {
-        var lodash = require('lodash')  //
-        return $('*').length;
-    })
+```javascript
+const Nightmare = require('node-nightmare')
+Nightmare({show: false}) 
+  .goto('https://google.com')
+  .wait('body')
+  .show()
+  .insert('input[aria-label="Search"]', 'node-nightmare github.com')
+  .click('input[type="submit"]')
+  .wait(1000)
+  .wait('body')
+  .hide()
+  .evaluate(function() {
+      return $('a:contains("node-nightmare")').text();
+  })
+  .then(function(ret) {
+     console.log(ret)
+  })
   ```
