@@ -3,7 +3,7 @@
 ## Features
 
   * support require nodejs modules ( use `with` to deal with conflicts perfectly)
-  * default import jquery@3 
+  * default import jquery@3.1.1
   * add show & hide api
   
 ## example
