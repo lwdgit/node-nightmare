@@ -23,12 +23,11 @@ Nightmare({show: false})
   .insert('input[aria-label="Search"]', 'node-nightmare github.com')
   .click('input[type="submit"]')
   .wait(1000)
-  .wait('body')
-  .hide()
+  .wait('#resultStats')
+  .end()
   .evaluate(function() {
       let text = $('a:contains("node-nightmare")').text();
       require('fs').writeFileSync('./results.txt', text);
-      //your can require your modules in current path
       return text;
       // default require saved in __NODE namespace, but you can use it directly in `evaluate` scope
   })
