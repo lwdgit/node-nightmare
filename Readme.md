@@ -17,10 +17,10 @@
 ```javascript
 const Nightmare = require('node-nightmare')
 Nightmare({show: false}) 
-  .goto('https://google.com')
-  .wait('body')
   .show()
-  .insert('input[aria-label="Search"]', 'node-nightmare github.com')
+  .goto('https://google.com')
+  .wait('input[type="submit"]')
+  .insert('input[name="q"]', 'node-nightmare github.com')
   .click('input[type="submit"]')
   .wait(1000)
   .wait('#resultStats')
@@ -28,11 +28,13 @@ Nightmare({show: false})
   .evaluate(function() {
       let text = $('a:contains("node-nightmare")').text();
       require('fs').writeFileSync('./results.txt', text);
-      //you should install shelljs first in your workspace
-      return require('shelljs').ls().stdout; 
+      return require('shelljs').cat('./results.txt').stdout;//you should install shelljs in your workspace
+      // default require saved in __NODE namespace, but you can use it directly in `evaluate` scope
   })
   .then(function(ret) {
      console.log(ret)
+  }).catch(function(e) {
+     console.log(e)
   })
 ```
 
