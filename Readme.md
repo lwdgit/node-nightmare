@@ -6,8 +6,14 @@
   * default import jquery@3.1.1
   * add show & hide api
   
-## example
+  
+## install
 
+```bash
+> npm install --save node-nightmare
+```
+
+## example
 ```javascript
 const Nightmare = require('node-nightmare')
 Nightmare({show: false}) 
@@ -20,7 +26,10 @@ Nightmare({show: false})
   .wait('body')
   .hide()
   .evaluate(function() {
-      return $('a:contains("node-nightmare")').text();
+      let text = $('a:contains("node-nightmare")').text();
+      require('fs').writeFileSync('./results.txt', text);
+      //your can require your modules in current path
+      return text;
       // default require saved in __NODE namespace, but you can use it directly in `evaluate` scope
   })
   .then(function(ret) {
